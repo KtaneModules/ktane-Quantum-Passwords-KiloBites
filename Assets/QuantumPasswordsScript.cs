@@ -92,6 +92,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
 	void Start()
 	{
 		List<string> wordList = words.ToList();
+		List<int> numList = values.ToList();
 
 		for (var i = 0; i < 2; i++)
 		{
@@ -99,6 +100,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
 			selectedWords[i] = wordList[gen];
 			selectedValues[i] = values[gen];
 			wordList.RemoveAt(gen);
+			numList.RemoveAt(gen);
 		}
 
 		Debug.LogFormat("[Quantum Passwords #{0}] The words selected are: {1}", moduleId, selectedWords.Join(", "));
@@ -128,9 +130,11 @@ public class QuantumPasswordsScript : MonoBehaviour {
 		var parOne = selectedValues[0] % 2;
 		var parTwo = selectedValues[1] % 2;
 
+
+
 		correctPos = parOne == parTwo ? Math.Min(selectedValues[0], selectedValues[1]) : Math.Max(selectedValues[0], selectedValues[1]);
 
-		Debug.LogFormat("[Quantum Passwords #{0}] Both word's values {1}. Submit position {2}.", moduleId, selectedValues[0] % 2 == selectedValues[1] % 2 ? "share the same parity" : "don't share the same parity", correctPos);
+		Debug.LogFormat("[Quantum Passwords #{0}] Both word's values {1}. Submit position {2}.", moduleId, parOne == parTwo ? "share the same parity" : "don't share the same parity", correctPos);
 	}
 
 	void submitPress()
