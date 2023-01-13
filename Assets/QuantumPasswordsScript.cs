@@ -98,12 +98,14 @@ public class QuantumPasswordsScript : MonoBehaviour {
 		{
 			var gen = rnd.Range(0, wordList.Count);
 			selectedWords[i] = wordList[gen];
-			selectedValues[i] = values[gen];
+			selectedValues[i] = numList[gen];
 			wordList.RemoveAt(gen);
 			numList.RemoveAt(gen);
 		}
 
 		Debug.LogFormat("[Quantum Passwords #{0}] The words selected are: {1}", moduleId, selectedWords.Join(", "));
+		Debug.LogFormat("[Quantum Passwords #{0}] The values of those words are: {1}", moduleId, selectedValues.Join(", "));
+
 
 		for (int i = 0; i < 2; i++)
 		{
