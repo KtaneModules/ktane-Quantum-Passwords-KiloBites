@@ -381,7 +381,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
     {
 		yield return null;
 
-		while (!isActivated)
+		while (!isActivated || pause)
 		{
 			yield return true;
 		}
