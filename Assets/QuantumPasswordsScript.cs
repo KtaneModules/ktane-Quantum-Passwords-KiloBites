@@ -125,7 +125,10 @@ public class QuantumPasswordsScript : MonoBehaviour {
 
 	void determinePos()
 	{
-		correctPos = selectedValues[0] % 2 == selectedValues[1] % 2 ? Math.Min(selectedValues[0], selectedValues[1]) : Math.Max(selectedValues[0], selectedValues[1]);
+		var parOne = selectedValues[0] % 2;
+		var parTwo = selectedValues[1] % 2;
+
+		correctPos = parOne == parTwo ? Math.Min(selectedValues[0], selectedValues[1]) : Math.Max(selectedValues[0], selectedValues[1]);
 
 		Debug.LogFormat("[Quantum Passwords #{0}] Both word's values {1}. Submit position {2}.", moduleId, selectedValues[0] % 2 == selectedValues[1] % 2 ? "share the same parity" : "don't share the same parity", correctPos);
 	}
