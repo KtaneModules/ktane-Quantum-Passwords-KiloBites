@@ -300,7 +300,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
 
 
 #pragma warning disable 414
-	private readonly string TwitchHelpMessage = @"Use !{0} cycle to cycle through all grids. | !{0} submit 12345 to submit the position of the grid.";
+	private readonly string TwitchHelpMessage = @"Use !{0} cycle to cycle through all grids. || !{0} submit 12345 to submit the position of the grid. || !{0} L/Left/R/Right to move through the grid.";
 #pragma warning restore 414
 
 	IEnumerator ProcessTwitchCommand (string command)
@@ -316,13 +316,14 @@ public class QuantumPasswordsScript : MonoBehaviour {
 			yield break;
 		}
 
-		if (split[0].EqualsIgnoreCase("CYCLE"))
+        if (cycleActive)
+        {
+            yield return "sendtochaterror You cannot interact with the module while it's cycling!";
+            yield break;
+        }
+
+        if (split[0].EqualsIgnoreCase("CYCLE"))
 		{
-			if (cycleActive)
-			{
-				yield return "sendtochaterror You cannot interact with the module while it's cycling!";
-				yield break;
-			}
 			cycleActive = true;
 
 			if (ix != 0)
@@ -350,11 +351,38 @@ public class QuantumPasswordsScript : MonoBehaviour {
 			yield break;
 		}
 
+		if (split[0].EqualsIgnoreCase("L") || split[0].EqualsIgnoreCase("LEFT") || split[0].EqualsIgnoreCase("R") || split[0].EqualsIgnoreCase("RIGHT"))
+		{
+
+			switch (split[0])
+			{
+				case "L":
+				case "LEFT":
+					if (ix == 0)
+					{
+						yield return "sendtochaterror The position is already at 1!";
+						yield break;
+					}
+					arrows[0].OnInteract();
+					break;
+				case "R":
+				case "RIGHT":
+					if (ix == 4)
+					{
+						yield return "sendtochaterror The position is already at 5!";
+						yield break;
+					}
+					arrows[1].OnInteract();
+					break;
+			}
+			yield break;
+		}
+
 		if (split[0].EqualsIgnoreCase("SUBMIT"))
 		{
 			if (split.Length == 1)
 			{
-				yield return "sendtochaterror Please specifiy the position you want to submit!";
+				submit.OnInteract();
 				yield break;
 			}
 			else if (split[1].Length > 1)
