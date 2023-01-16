@@ -109,7 +109,19 @@ public class QuantumPasswordsScript : MonoBehaviour {
 
 		for (int i = 0; i < 2; i++)
 		{
-			selectedWords[i] = shiftingText(selectedWords[i], rnd.Range(1, selectedWords[i].Count())); 
+			int[] shiftValue = new int[2];
+
+			shiftValue[i] = rnd.Range(1, selectedWords[i].Count());
+
+			if (shiftValue[0] == shiftValue[1])
+			{
+				while (shiftValue[0] == shiftValue[1])
+				{
+					shiftValue[i] = rnd.Range(1, selectedWords[i].Count());
+				}
+			}
+
+			selectedWords[i] = shiftingText(selectedWords[i], shiftValue[i]); 
 		}
 
         Debug.LogFormat("[Quantum Passwords #{0}] After shifting the words: {1}", moduleId, selectedWords.Join(", ").ToUpperInvariant());
