@@ -25,7 +25,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
 	private bool pause;
 
 	private static readonly string[] words = { "Argue", "Blaze", "Cajun", "Depth", "Endow", "Foyer", "Gimpy", "Heavy", "Index", "Joker", "Kylix", "Lambs", "Mercy", "Nifty", "Omens", "Pupil", "Risky", "Stoic", "Taboo", "Unbox", "Viced", "Waltz", "Xerus", "Yuzus", "Zilch" };
-	private static readonly int[] values = { 3, 1, 4, 1, 5, 4, 2, 1, 5, 3, 5, 3, 4, 2, 4, 5, 3, 4, 2, 4, 5, 3, 4, 2, 4 };
+	private static readonly int[] values = { 3, 1, 4, 1, 5, 4, 2, 1, 5, 3, 5, 3, 4, 2, 4, 1, 4, 5, 2, 2, 4, 5, 2, 3, 1 };
 	private string[] selectedWords = new string[2];
 	private int[] selectedValues = new int[2];
 	private bool[][][] letterPatterns = new bool[2][][];
