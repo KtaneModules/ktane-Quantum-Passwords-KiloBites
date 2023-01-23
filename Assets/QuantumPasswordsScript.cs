@@ -29,7 +29,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
 	private string[] selectedWords = new string[2];
 	private int[] selectedValues = new int[2];
 	private bool[][][] letterPatterns = new bool[2][][];
-	private bool[][] alphabetPatterns = new string[]
+	private static readonly bool[][] alphabetPatterns = new string[]
 	{
 		".xxx.x...xxxxxxx...xx...x", // A
 		"xxxx.x...xxxxx.x...xxxxx.", // B
