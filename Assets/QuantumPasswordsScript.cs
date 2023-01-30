@@ -312,7 +312,7 @@ public class QuantumPasswordsScript : MonoBehaviour {
 
 
 #pragma warning disable 414
-	private readonly string TwitchHelpMessage = @"Use !{0} cycle to cycle through all grids. || !{0} submit 12345 to submit the position of the grid. || !{0} L/Left/R/Right to move through the grid.";
+	private readonly string TwitchHelpMessage = @"Use !{0} cycle to cycle through all grids. || !{0} submit 12345 to submit the position of the grid (number is optional). || !{0} L/Left/R/Right to move through the grid.";
 #pragma warning restore 414
 
 	IEnumerator ProcessTwitchCommand (string command)
@@ -428,7 +428,6 @@ public class QuantumPasswordsScript : MonoBehaviour {
 
 	IEnumerator TwitchHandleForcedSolve()
     {
-		yield return null;
 
 		while (!isActivated || pause)
 		{
@@ -448,6 +447,13 @@ public class QuantumPasswordsScript : MonoBehaviour {
 			yield return new WaitForSeconds(0.1f);
 		}
 		submit.OnInteract();
+
+		while (!moduleSolved)
+		{
+			yield return true;
+		}
+
+		yield return null;
     }
 
 
